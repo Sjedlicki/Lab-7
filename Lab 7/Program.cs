@@ -62,7 +62,7 @@ namespace Lab_7
         }
         public static bool Password(string password)
         {
-            string pass = "^([?=.*[0-9a-zA-Z])(?=.*[0-9]).{4,36}$";
+            string pass = "^(?=.*[a-zA-Z0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{5,36}$";
             Regex test = new Regex(pass);
             return test.IsMatch(password);
         }
@@ -85,8 +85,6 @@ namespace Lab_7
                 {  
                     Console.WriteLine(validEmail[i] + "\t\t" + validPass[i]);
                     cont = false;
-                    Console.WriteLine("\nPress any key to exit...");
-                    Console.ReadKey();
                 }
             }
             else
