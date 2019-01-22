@@ -9,36 +9,37 @@ namespace Lab_7
 {
     class Program
     {
-        static void Main(string[] args)
-        {            
-            List<string> validEmail = new List<string>();
-            List<string> validPass = new List<string>();
+        public static List<string> validEmail = new List<string>();
+        public static List<string> validPass = new List<string>();
 
+        static void Main()
+        {
             
             bool run = true;
             while (run == true)
-            {
+            {                
                 Console.Write("Enter Username: ");
                 string userName = Console.ReadLine();
                 bool user = UserName(userName);
 
-                if (user == true)
-                {
-                    Console.WriteLine(userName + " is valid.");
-                    validEmail.Add(userName);
-                    run = false;
+                 if (user == true)
+                    {
+                        Console.WriteLine(userName + " is valid.");
+                        validEmail.Add(userName);
+                        run = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine(userName + " is an invalid email.");
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(userName + " is an invalid email.");
-                }
-            }
 
             bool run2 = true;
             while (run2 == true)
             {
                 Console.Write("Enter Password: ");
                 string password = Console.ReadLine();
+
                 bool pass = Password(password);
                 if (pass == true)
                 {
@@ -51,21 +52,50 @@ namespace Lab_7
                     Console.WriteLine(password + " is an invalid password.");
                 }
             }
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            Continue();
         }
         public static bool UserName(string userName)
-        {            
-            string name = "^[a-zA-Z0-9]{3,11}[@][a-zA-Z]{3,11}[.][a-zA-Z]{2,3}$";            
+        {
+            string name = "^[a-zA-Z0-9]{3,11}[@][a-zA-Z]{3,11}[.][a-zA-Z]{2,3}$";
             Regex test = new Regex(name);
             return test.IsMatch(userName);
         }
         public static bool Password(string password)
         {
-            string pass = "^[a-zA-Z0-9][A-Z]{5,36}$";
+            string pass = "^([?=.*[0-9a-zA-Z])(?=.*[0-9]).{4,36}$";
             Regex test = new Regex(pass);
             return test.IsMatch(password);
+        }
+        public static bool Continue()
+        {
+            Console.Write("Input more data? (y/n): ");
+            string input = Console.ReadLine().ToLower();
+
+            bool cont = true;
+            if (input == "y")
+            {
+                Console.Clear();
+                Main();
+                cont = true;
+            }
+            else if (input == "n")
+            {
+                Console.WriteLine("Email Address\t\tPassword\n=============\t\t==========\n");
+                for ( int i = 0; i < validEmail.Count; i++)
+                {  
+                    Console.WriteLine(validEmail[i] + "\t\t" + validPass[i]);
+                    cont = false;
+                    Console.WriteLine("\nPress any key to exit...");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.Beep(); Console.Beep(); Console.Beep();
+                Console.WriteLine("Invalid Response");
+                cont = Continue();
+            }
+            return cont;
         }
     }
 }
