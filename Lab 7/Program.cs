@@ -13,25 +13,24 @@ namespace Lab_7
         public static List<string> validPass = new List<string>();
 
         static void Main()
-        {            
+        {
             bool run = true;
             while (run == true)
-            {                
+            {
                 Console.Write("Enter Username: ");
                 string userName = Console.ReadLine();
+
                 bool user = UserName(userName);
-
                 if (user == true)
-                   {
-                        Console.WriteLine("\n"+ userName + " is valid.\n");
-                        validEmail.Add(userName);
-                        run = false;
-                   }
-                   else
-
-                   {
-                        Console.WriteLine("\n" + userName + " is an invalid email.\n");
-                   }
+                {
+                    Console.WriteLine("\n" + userName + " is valid.\n");
+                    validEmail.Add(userName);
+                    run = false;
+                }
+                else
+                {
+                    Console.WriteLine("\n" + userName + " is an invalid email.\n");
+                }
             }
             bool run2 = true;
             while (run2 == true)
@@ -52,8 +51,6 @@ namespace Lab_7
                 }
             }
             Continue();
-            Console.WriteLine("\n\nGood Bye!");
-            Console.ReadKey();
         }
         public static bool UserName(string userName)
         {
@@ -81,12 +78,23 @@ namespace Lab_7
             }
             else if (input == "n")
             {
-                Console.WriteLine("\n{0,-36}{1,-36}\n{2,-36}{2,-36}\n","       Email","       Password","=====================");
-                for ( int i = 0; i < validEmail.Count; i++)
+                Console.Clear();
+                Console.WriteLine("Your list contains");
+                string email = "        Email";
+                string pass = "        Password";
+                string seperate = "========================";
+
+                Console.WriteLine("\n{0,-36}{1,-36}\n{2,-36}{2,-36}\n", email, pass, seperate);
+
+                for (int i = 0; i < validEmail.Count; i++)
                 {
-                    Console.WriteLine("\n{2}: {0,-36}{2}: {1,-34}", validEmail[i], validPass[i], i+1);                    
+                    //\n\n{3,-36}{3,-36}\n
+                    Console.WriteLine("{2}: {0,-33}{2}: {1,-36}\n", validEmail[i], validPass[i], i + 1);
                     cont = false;
                 }
+                Console.WriteLine("{0,-36}{0,-36}\n", seperate);
+                Console.WriteLine("Good Bye!\n\nPress any key to exit...");
+                Console.ReadKey();
             }
             else
             {
