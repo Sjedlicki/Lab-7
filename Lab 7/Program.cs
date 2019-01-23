@@ -14,10 +14,12 @@ namespace Lab_7
 
         static void Main()
         {
+            Console.WriteLine("Email must consist of: 3 character name and domain.");
             bool run = true;
             while (run == true)
             {
-                Console.Write("Enter Username: ");
+                
+                Console.Write("Enter Email: ");
                 string userName = Console.ReadLine();
 
                 bool user = UserName(userName);
@@ -32,6 +34,7 @@ namespace Lab_7
                     Console.WriteLine("\n" + userName + " is an invalid email.\n");
                 }
             }
+            Console.WriteLine("Password must be 5 characters long and consist of 1 uppercase, 1 lowercase, 1 number");
             bool run2 = true;
             while (run2 == true)
             {
